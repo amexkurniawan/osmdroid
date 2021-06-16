@@ -13,6 +13,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.MinimapOverlay
 import org.osmdroid.views.overlay.ScaleBarOverlay
 import org.osmdroid.views.overlay.compass.CompassOverlay
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         //setGridLine()
         setRotationGesture()
         setMapScaleBar()
+        //setBuildinMiniMap()
     }
 
     private fun setMapLocation() {
@@ -59,27 +61,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMyLocation() {
-        locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), map);
-        this.locationOverlay.enableMyLocation();
+        locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), map)
+        this.locationOverlay.enableMyLocation()
         map.overlays.add(locationOverlay)
     }
 
     private fun setCompassOverlay() {
-        compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), map);
-        compassOverlay.enableCompass();
-        map.overlays.add(compassOverlay);
+        compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), map)
+        compassOverlay.enableCompass()
+        map.overlays.add(compassOverlay)
     }
 
     private fun setGridLine() {
-        val overlay = LatLonGridlineOverlay2();
-        map.overlays.add(overlay);
+        val overlay = LatLonGridlineOverlay2()
+        map.overlays.add(overlay)
     }
 
     private fun setRotationGesture() {
-        val rotationGestureOverlay = RotationGestureOverlay(map);
+        val rotationGestureOverlay = RotationGestureOverlay(map)
         rotationGestureOverlay.isEnabled
-        map.setMultiTouchControls(true);
-        map.overlays.add(rotationGestureOverlay);
+        map.setMultiTouchControls(true)
+        map.overlays.add(rotationGestureOverlay)
     }
 
     private fun setMapScaleBar() {
@@ -87,8 +89,18 @@ class MainActivity : AppCompatActivity() {
         val scaleBarOverlay = ScaleBarOverlay(map)
         scaleBarOverlay.setCentred(true)
         //play around with these values to get the location on screen in the right place for your application
-        scaleBarOverlay.setScaleBarOffset(displayMetrics.widthPixels / 2, 10);
-        map.overlays.add(scaleBarOverlay);
+        scaleBarOverlay.setScaleBarOffset(displayMetrics.widthPixels / 2, 10)
+        map.overlays.add(scaleBarOverlay)
+    }
+
+    private fun setBuildinMiniMap() {
+        val displayMetrics = this.resources.displayMetrics
+        val minimapOverlay = MinimapOverlay(this, map.tileRequestCompleteHandler)
+        minimapOverlay.setWidth(displayMetrics.widthPixels / 5)
+        minimapOverlay.setHeight(displayMetrics.heightPixels / 5)
+        //optionally, you can set the minimap to a different tile source
+        //minimapOverlay.setTileSource(....)
+        map.overlays.add(minimapOverlay)
     }
 
     private fun checkPermissionAndGps() {
