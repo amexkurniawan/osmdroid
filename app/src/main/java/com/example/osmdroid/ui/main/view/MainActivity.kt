@@ -1,9 +1,10 @@
-package com.example.osmdroid
+package com.example.osmdroid.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import androidx.core.app.ActivityCompat
+import com.example.osmdroid.R
 import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
