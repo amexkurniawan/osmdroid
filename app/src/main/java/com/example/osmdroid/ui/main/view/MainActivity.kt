@@ -13,6 +13,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.ScaleBarOverlay
 import org.osmdroid.views.overlay.compass.CompassOverlay
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
 import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var map : MapView
     private lateinit var locationOverlay: MyLocationNewOverlay
     private lateinit var compassOverlay: CompassOverlay
+    private lateinit var scaleBarOverlay: ScaleBarOverlay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         //setCompassOverlay()
         //setGridLine()
         setRotationGesture()
+        setMapScaleBar()
     }
 
     private fun setMapLocation() {
@@ -77,6 +80,15 @@ class MainActivity : AppCompatActivity() {
         rotationGestureOverlay.isEnabled
         map.setMultiTouchControls(true);
         map.overlays.add(rotationGestureOverlay);
+    }
+
+    private fun setMapScaleBar() {
+        val displayMetrics = this.resources.displayMetrics
+        val scaleBarOverlay = ScaleBarOverlay(map)
+        scaleBarOverlay.setCentred(true)
+        //play around with these values to get the location on screen in the right place for your application
+        scaleBarOverlay.setScaleBarOffset(displayMetrics.widthPixels / 2, 10);
+        map.overlays.add(scaleBarOverlay);
     }
 
     private fun checkPermissionAndGps() {
