@@ -1,10 +1,14 @@
 package com.example.osmdroid.ui.main.view
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.preference.PreferenceManager
-import androidx.core.app.ActivityCompat
 import com.example.osmdroid.R
+import com.example.osmdroid.utils.extentions.isGpsEnabled
+import com.example.osmdroid.utils.extentions.isLocationPermissionGranted
+import com.example.osmdroid.utils.extentions.requestLocationPermission
 import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -12,7 +16,7 @@ import org.osmdroid.util.GeoPoint
 
 class MainActivity : AppCompatActivity() {
 
-    private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
+    private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setMapConfiguration()
-        setMapLocation()
+        checkPermissionAndGps()
     }
 
     private fun setMapConfiguration() {
@@ -39,10 +43,22 @@ class MainActivity : AppCompatActivity() {
         mapController.setCenter(startPoint)
     }
 
+    private fun checkPermissionAndGps() {
+        when {
+            !isLocationPermissionGranted -> requestLocationPermission(REQUEST_ACCESS_FINE_LOCATION)
+            !isGpsEnabled -> {
+                Toast.makeText(this, "please enable your gps!", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            else -> setMapLocation()
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         //needed for compass, my location overlays, v6.0.0 and up
         map.onResume()
+        checkPermissionAndGps()
     }
 
     override fun onPause() {
@@ -52,18 +68,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val permissionsToRequest = ArrayList<String>();
-        var i = 0;
-        while (i < grantResults.size) {
-            permissionsToRequest.add(permissions[i]);
-            i++;
-        }
-        if (permissionsToRequest.size > 0) {
-            ActivityCompat.requestPermissions(
-                this,
-                permissionsToRequest.toTypedArray(),
-                REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
+        if (requestCode == REQUEST_ACCESS_FINE_LOCATION) {
+            if (grantResults.size == 1 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "location permission denied", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }
