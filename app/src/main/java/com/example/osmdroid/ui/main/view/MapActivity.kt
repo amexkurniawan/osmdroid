@@ -10,47 +10,35 @@ import com.example.osmdroid.R
 import com.example.osmdroid.utils.extentions.isGpsEnabled
 import com.example.osmdroid.utils.extentions.isLocationPermissionGranted
 import com.example.osmdroid.utils.extentions.requestLocationPermission
-import org.osmdroid.views.MapView
-import org.osmdroid.config.Configuration.*
+import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.overlay.*
-import org.osmdroid.views.overlay.compass.CompassOverlay
-import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
-import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
-import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class MainActivity : AppCompatActivity() {
-
+class MapActivity : AppCompatActivity() {
     private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView
     private lateinit var locationOverlay: MyLocationNewOverlay
-    private lateinit var compassOverlay: CompassOverlay
-    private lateinit var scaleBarOverlay: ScaleBarOverlay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //handle permissions first, before map is created. not depicted here
         // This won't work unless you have imported this: org.osmdroid.config.Configuration.*
-        getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
-        setContentView(R.layout.activity_main)
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        setContentView(R.layout.activity_map)
 
         setMapConfiguration()
         checkPermissionAndGps()
-        setMyLocation()
+        //setMyLocation()
     }
 
     private fun setMapConfiguration() {
         map = findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
-        //setCompassOverlay()
-        //setGridLine()
-        setRotationGesture()
-        setMapScaleBar()
-        //setBuildinMiniMap()
     }
 
     private fun setMapLocation() {
@@ -66,43 +54,6 @@ class MainActivity : AppCompatActivity() {
         locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), map)
         this.locationOverlay.enableMyLocation()
         map.overlays.add(locationOverlay)
-    }
-
-    private fun setCompassOverlay() {
-        compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), map)
-        compassOverlay.enableCompass()
-        map.overlays.add(compassOverlay)
-    }
-
-    private fun setGridLine() {
-        val overlay = LatLonGridlineOverlay2()
-        map.overlays.add(overlay)
-    }
-
-    private fun setRotationGesture() {
-        val rotationGestureOverlay = RotationGestureOverlay(map)
-        rotationGestureOverlay.isEnabled
-        map.setMultiTouchControls(true)
-        map.overlays.add(rotationGestureOverlay)
-    }
-
-    private fun setMapScaleBar() {
-        val displayMetrics = this.resources.displayMetrics
-        val scaleBarOverlay = ScaleBarOverlay(map)
-        scaleBarOverlay.setCentred(true)
-        //play around with these values to get the location on screen in the right place for your application
-        scaleBarOverlay.setScaleBarOffset(displayMetrics.widthPixels / 2, 10)
-        map.overlays.add(scaleBarOverlay)
-    }
-
-    private fun setBuildinMiniMap() {
-        val displayMetrics = this.resources.displayMetrics
-        val minimapOverlay = MinimapOverlay(this, map.tileRequestCompleteHandler)
-        minimapOverlay.setWidth(displayMetrics.widthPixels / 5)
-        minimapOverlay.setHeight(displayMetrics.heightPixels / 5)
-        //optionally, you can set the minimap to a different tile source
-        //minimapOverlay.setTileSource(....)
-        map.overlays.add(minimapOverlay)
     }
 
     private fun setLocationMarker(location: GeoPoint): Marker {
