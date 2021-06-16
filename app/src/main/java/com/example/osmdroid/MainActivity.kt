@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     private fun setMapLocation() {
         val mapController = map.controller
         mapController.setZoom(9.5)
-        val startPoint = GeoPoint(48.8583, 2.2944);
-        mapController.setCenter(startPoint);
+        val startPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
+        mapController.setCenter(startPoint)
     }
 
     override fun onResume() {
