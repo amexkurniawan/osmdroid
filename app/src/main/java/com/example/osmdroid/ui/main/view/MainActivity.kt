@@ -15,6 +15,8 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.overlay.compass.CompassOverlay
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
+import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
+import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -36,12 +38,14 @@ class MainActivity : AppCompatActivity() {
         setMapConfiguration()
         checkPermissionAndGps()
         setMyLocation()
-        setCompassOverlay()
     }
 
     private fun setMapConfiguration() {
         map = findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
+        //setCompassOverlay()
+        //setGridLine()
+        setRotationGesture()
     }
 
     private fun setMapLocation() {
@@ -61,6 +65,18 @@ class MainActivity : AppCompatActivity() {
         compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), map);
         compassOverlay.enableCompass();
         map.overlays.add(compassOverlay);
+    }
+
+    private fun setGridLine() {
+        val overlay = LatLonGridlineOverlay2();
+        map.overlays.add(overlay);
+    }
+
+    private fun setRotationGesture() {
+        val rotationGestureOverlay = RotationGestureOverlay(map);
+        rotationGestureOverlay.isEnabled
+        map.setMultiTouchControls(true);
+        map.overlays.add(rotationGestureOverlay);
     }
 
     private fun checkPermissionAndGps() {
