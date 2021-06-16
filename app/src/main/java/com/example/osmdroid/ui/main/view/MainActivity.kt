@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.example.osmdroid.R
 import com.example.osmdroid.utils.extentions.isGpsEnabled
@@ -13,8 +14,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.overlay.MinimapOverlay
-import org.osmdroid.views.overlay.ScaleBarOverlay
+import org.osmdroid.views.overlay.*
 import org.osmdroid.views.overlay.compass.CompassOverlay
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
 import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setMapLocation() {
         val mapController = map.controller
-        mapController.setZoom(9.5)
+        mapController.setZoom(12.0)
         val startPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
         mapController.setCenter(startPoint)
     }
@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
         locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), map)
         this.locationOverlay.enableMyLocation()
         map.overlays.add(locationOverlay)
+        // set icon to marked position
+        setDestinationMarker()
     }
 
     private fun setCompassOverlay() {
@@ -101,6 +103,24 @@ class MainActivity : AppCompatActivity() {
         //optionally, you can set the minimap to a different tile source
         //minimapOverlay.setTileSource(....)
         map.overlays.add(minimapOverlay)
+    }
+
+    private fun setLocationMarker(location: GeoPoint): Marker {
+        val drawable = ContextCompat.getDrawable(this, R.drawable.ic_marker)
+        val destinationPoint = GeoPoint(location.latitude, location.longitude)
+        val destinationMarker = Marker(map)
+        return destinationMarker.apply {
+            position = destinationPoint
+            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            icon = drawable
+        }
+    }
+
+    private fun setDestinationMarker() {
+        val destinationGeoPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
+        val destinationMarker = setLocationMarker(destinationGeoPoint)
+        map.overlays.add(destinationMarker)
+        map.controller.animateTo(destinationGeoPoint)
     }
 
     private fun checkPermissionAndGps() {
