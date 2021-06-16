@@ -74,6 +74,7 @@ class MapActivity : AppCompatActivity(), LocationListener {
         val destinationPoint = GeoPoint(location.latitude, location.longitude)
         val destinationMarker = Marker(map)
         return destinationMarker.apply {
+            title = "lat: ${location.latitude}, long: ${location.longitude}"
             position = destinationPoint
             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             icon = drawable
