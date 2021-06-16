@@ -13,11 +13,14 @@ import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class MainActivity : AppCompatActivity() {
 
     private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView
+    private lateinit var locationOverlay: MyLocationNewOverlay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         setMapConfiguration()
         checkPermissionAndGps()
+        setMyLocation()
     }
 
     private fun setMapConfiguration() {
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         mapController.setZoom(9.5)
         val startPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
         mapController.setCenter(startPoint)
+    }
+
+    private fun setMyLocation() {
+        locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), map);
+        this.locationOverlay.enableMyLocation();
+        map.overlays.add(locationOverlay)
     }
 
     private fun checkPermissionAndGps() {
