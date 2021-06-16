@@ -42,4 +42,9 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Open Street map (osmdroid)
+    implementation "org.osmdroid:osmdroid-android:$osmdroid_version"
+    implementation "org.osmdroid:osmdroid-wms:$osmdroid_version"
+    implementation "org.osmdroid:osmdroid-mapsforge:$osmdroid_version"
+    implementation "org.osmdroid:osmdroid-geopackage:$osmdroid_version"
 }
