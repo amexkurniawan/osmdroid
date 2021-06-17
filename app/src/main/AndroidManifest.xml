@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OSMDroid">
-        <activity android:name=".ui.main.view.MarkerActivity"></activity>
+        <activity android:name=".ui.main.view.FastOverlayActivity" />
+        <activity android:name=".ui.main.view.MarkerActivity" />
         <activity android:name=".ui.dashboard.view.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

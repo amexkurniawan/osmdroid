@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMarkerMap"
-        android:text="OSMDroid 1"
+        android:text="Basic OSMDroid"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMarkerMap"
-        android:text="OSMDroid 2"
+        android:text="Marker"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
@@ -34,7 +34,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMarkerMap"
-        android:text="OSMDroid 3"
+        android:text="Get Lat and long"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Fast Overlay"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
