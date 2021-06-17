@@ -10,6 +10,7 @@ import com.example.osmdroid.R
 import com.example.osmdroid.utils.extentions.isGpsEnabled
 import com.example.osmdroid.utils.extentions.isLocationPermissionGranted
 import com.example.osmdroid.utils.extentions.requestLocationPermission
+import com.example.osmdroid.utils.library.MarkerWindow
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -48,7 +49,9 @@ class InfoWindowActivity : AppCompatActivity() {
 
     private fun setMarkerLocation(location: GeoPoint) {
         val marker = Marker(map)
+        val infoWindow = MarkerWindow(map, "lat: ${location.latitude}", "long: ${location.longitude}")
         val geoPoint = GeoPoint(location.latitude, location.longitude)
+        marker.infoWindow = infoWindow
         marker.position = geoPoint
         marker.icon = ContextCompat.getDrawable(this, R.drawable.ic_marker)
         marker.title = "Test Marker"
