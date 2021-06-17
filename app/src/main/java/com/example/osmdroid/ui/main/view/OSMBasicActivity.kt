@@ -22,7 +22,7 @@ import org.osmdroid.views.overlay.gridlines.LatLonGridlineOverlay2
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class MainActivity : AppCompatActivity() {
+class OSMBasicActivity : AppCompatActivity() {
 
     private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView

@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.osmdroid.R
-import com.example.osmdroid.ui.main.view.MainActivity
-import com.example.osmdroid.ui.main.view.MainActivity2
+import com.example.osmdroid.ui.main.view.OSMBasicActivity
+import com.example.osmdroid.ui.main.view.MarkerActivity
 import com.example.osmdroid.ui.main.view.MapActivity
 
 class DashboardActivity : AppCompatActivity() {
@@ -20,11 +20,11 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun onClickAction() {
         findViewById<Button>(R.id.btnOsmdroid1).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, OSMBasicActivity::class.java)
             startActivity(intent)
         }
         findViewById<Button>(R.id.btnOsmdroid2).setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MarkerActivity::class.java)
             startActivity(intent)
         }
         findViewById<Button>(R.id.btnOsmdroid3).setOnClickListener {

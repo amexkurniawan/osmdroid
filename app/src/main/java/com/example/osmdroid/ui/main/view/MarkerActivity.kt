@@ -17,7 +17,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class MainActivity2 : AppCompatActivity() {
+class MarkerActivity : AppCompatActivity() {
 
     private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView
