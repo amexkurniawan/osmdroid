@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.osmdroid.R
 import com.example.osmdroid.ui.main.view.MainActivity
+import com.example.osmdroid.ui.main.view.MainActivity2
 import com.example.osmdroid.ui.main.view.MapActivity
 
 class DashboardActivity : AppCompatActivity() {
@@ -23,6 +24,10 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<Button>(R.id.btnOsmdroid2).setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.btnOsmdroid3).setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
             startActivity(intent)
         }
