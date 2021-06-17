@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.osmdroid.R
-import com.example.osmdroid.ui.main.view.FastOverlayActivity
-import com.example.osmdroid.ui.main.view.OSMBasicActivity
-import com.example.osmdroid.ui.main.view.MarkerActivity
-import com.example.osmdroid.ui.main.view.MapActivity
+import com.example.osmdroid.ui.main.view.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -34,6 +31,10 @@ class DashboardActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btnOsmdroid4).setOnClickListener {
             val intent = Intent(this, FastOverlayActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.btnOsmdroid5).setOnClickListener {
+            val intent = Intent(this, InfoWindowActivity::class.java)
             startActivity(intent)
         }
     }

@@ -48,4 +48,14 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Custom Info Window"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
 </LinearLayout>
