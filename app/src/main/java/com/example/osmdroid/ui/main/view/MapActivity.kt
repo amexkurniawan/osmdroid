@@ -69,21 +69,22 @@ class MapActivity : AppCompatActivity(), LocationListener {
         map.overlays.add(locationOverlay)
     }
 
-    private fun setLocationMarker(location: GeoPoint): Marker {
+    private fun setLocationMarker(location: GeoPoint, address: String): Marker {
         val drawable = ContextCompat.getDrawable(this, R.drawable.ic_marker)
         val destinationPoint = GeoPoint(location.latitude, location.longitude)
         val destinationMarker = Marker(map)
         return destinationMarker.apply {
-            title = "lat: ${location.latitude}, long: ${location.longitude}"
+            //title = "lat: ${location.latitude}, long: ${location.longitude}"
+            title = address
             position = destinationPoint
             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             icon = drawable
         }
     }
 
-    private fun setDestinationMarker(lat: Double, long: Double) {
+    private fun setDestinationMarker(lat: Double, long: Double, address: String) {
         val destinationGeoPoint = GeoPoint(lat, long)
-        val destinationMarker = setLocationMarker(destinationGeoPoint)
+        val destinationMarker = setLocationMarker(destinationGeoPoint, address)
         map.overlays.add(destinationMarker)
         map.controller.animateTo(destinationGeoPoint)
     }
@@ -156,7 +157,7 @@ class MapActivity : AppCompatActivity(), LocationListener {
 
             Log.d("addressss", address)
             Log.d("addressss", "" + location.latitude + "," + location.longitude)
-            setDestinationMarker(location.latitude, location.longitude)
+            setDestinationMarker(location.latitude, location.longitude, address)
             locationManager.removeUpdates(this)
         } catch (e: Exception) {
             e.printStackTrace()

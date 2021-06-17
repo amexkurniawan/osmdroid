@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.view.DashboardActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="OSMDroid 1"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="OSMDroid 2"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+</LinearLayout>
