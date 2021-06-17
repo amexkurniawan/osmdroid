@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.example.osmdroid.R
 import com.example.osmdroid.utils.extentions.isGpsEnabled
@@ -13,6 +14,7 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class MainActivity2 : AppCompatActivity() {
@@ -39,7 +41,22 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun setMapLocation() {
-        
+        val mapController = map.controller
+        mapController.setZoom(12.0)
+        val startPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
+        setMarkerLocation(startPoint)
+        mapController.setCenter(startPoint)
+    }
+
+    private fun setMarkerLocation(location: GeoPoint) {
+        val marker = Marker(map)
+        val geoPoint = GeoPoint(location.latitude, location.longitude)
+        marker.position = geoPoint
+        marker.icon = ContextCompat.getDrawable(this, R.drawable.ic_marker)
+        marker.title = "Test Marker"
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+        map.overlays.add(marker)
+        map.invalidate()
     }
 
     private fun checkPermissionAndGps() {
