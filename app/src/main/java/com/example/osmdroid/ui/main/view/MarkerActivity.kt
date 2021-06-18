@@ -44,16 +44,21 @@ class MarkerActivity : AppCompatActivity() {
         val mapController = map.controller
         mapController.setZoom(12.0)
         val startPoint = GeoPoint(-3.7815766998816853, 102.26529332970395)
-        setMarkerLocation(startPoint)
+        // tes marker 5k
+        for (i in 0..4999) {
+            var randomGeopoint = GeoPoint(-3 + Math.random() * 5, 102 + Math.random() * 5)
+            setMarkerLocation(randomGeopoint, i)
+        }
+        //setMarkerLocation(startPoint, 1)
         mapController.setCenter(startPoint)
     }
 
-    private fun setMarkerLocation(location: GeoPoint) {
+    private fun setMarkerLocation(location: GeoPoint, markerNo: Int) {
         val marker = Marker(map)
         val geoPoint = GeoPoint(location.latitude, location.longitude)
         marker.position = geoPoint
         marker.icon = ContextCompat.getDrawable(this, R.drawable.ic_marker)
-        marker.title = "Test Marker"
+        marker.title = "Marker ${markerNo}"
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
         map.overlays.add(marker)
         map.invalidate()
