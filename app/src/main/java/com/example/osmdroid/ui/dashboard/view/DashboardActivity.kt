@@ -45,5 +45,9 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, PolygonsActivity::class.java)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.btnOsmdroid8).setOnClickListener {
+            val intent = Intent(this, RadiusActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
