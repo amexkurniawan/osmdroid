@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OSMDroid">
+        <activity android:name=".ui.main.view.PolygonsActivity" />
         <activity android:name=".ui.main.view.PolylinesActivity" />
         <activity android:name=".ui.main.view.InfoWindowActivity" />
         <activity android:name=".ui.main.view.FastOverlayActivity" />

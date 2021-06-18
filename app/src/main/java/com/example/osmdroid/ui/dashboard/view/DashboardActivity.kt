@@ -41,5 +41,9 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, PolylinesActivity::class.java)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.btnOsmdroid7).setOnClickListener {
+            val intent = Intent(this, PolygonsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

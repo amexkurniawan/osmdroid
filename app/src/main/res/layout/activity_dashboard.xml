@@ -68,4 +68,14 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Polygons"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
 </LinearLayout>
