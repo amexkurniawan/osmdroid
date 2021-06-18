@@ -1,8 +1,12 @@
 package com.example.osmdroid.ui.main.view
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
@@ -19,12 +23,15 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
+import java.util.*
 
-class RadiusActivity : AppCompatActivity() {
+class RadiusActivity : AppCompatActivity(), LocationListener {
 
     private val REQUEST_ACCESS_FINE_LOCATION = 101
     private lateinit var map : MapView
     private lateinit var locationOverlay: MyLocationNewOverlay
+    private lateinit var locationManager: LocationManager
+    private val destination = GeoPoint(-3.7558874657289567, 102.27236375159629)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,7 @@ class RadiusActivity : AppCompatActivity() {
         map = findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
         setMyLocation()
+        setMarkerLocation(destination, 1)
     }
 
     private fun setMyLocation() {
@@ -74,10 +82,28 @@ class RadiusActivity : AppCompatActivity() {
         map.invalidate()
     }
 
+    @SuppressLint("MissingPermission")
+    private fun getGeoCurrentLocation() {
+        try {
+            locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0F, this)
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0, 0F, this)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    private fun getDistanceInMeters(myLocation: Location): Float {
+        val myDestination = Location("")
+        myDestination.latitude = destination.latitude
+        myDestination.longitude = destination.longitude
+
+        return myLocation.distanceTo(myDestination)
+    }
+
     private fun onClickAction() {
         findViewById<FloatingActionButton>(R.id.fabMyLocation).setOnClickListener {
-            map.controller.setZoom(16.0)
-            map.controller.animateTo(locationOverlay.myLocation)
+            getGeoCurrentLocation()
         }
     }
 
@@ -112,5 +138,16 @@ class RadiusActivity : AppCompatActivity() {
                 finish()
             }
         } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onLocationChanged(location: Location) {
+        try {
+            val distanceInMeters = getDistanceInMeters(location) / 1000
+            val rounded = String.format("%.2f", distanceInMeters)
+            Toast.makeText(this, "$rounded KM", Toast.LENGTH_SHORT).show()
+            locationManager.removeUpdates(this)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
