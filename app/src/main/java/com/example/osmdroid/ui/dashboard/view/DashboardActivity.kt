@@ -37,5 +37,9 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, InfoWindowActivity::class.java)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.btnOsmdroid6).setOnClickListener {
+            val intent = Intent(this, PolylinesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
