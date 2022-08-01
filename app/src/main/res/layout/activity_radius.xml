@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.view.OSMBasicActivity">
+    tools:context=".ui.main.view.RadiusActivity">
 
     <org.osmdroid.views.MapView android:id="@+id/map"
         android:layout_width="@dimen/dimen_0"
@@ -14,4 +14,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:fabSize="mini"
+        app:backgroundTint="@color/white"
+        app:rippleColor="@color/colorMarkerMap"
+        app:srcCompat="@drawable/ic_my_location"
+        app:tint="@color/colorMarkerMap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

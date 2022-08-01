@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.view.DashboardActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Basic OSMDroid"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Marker"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Get Lat and long"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Fast Overlay"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Custom Info Window"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Polylines"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Polygons"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOsmdroid8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMarkerMap"
+        android:text="Radius"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+</LinearLayout>

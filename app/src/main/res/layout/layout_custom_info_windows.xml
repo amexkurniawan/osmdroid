@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:layout_marginStart="5dp"
+        android:text="Title"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvLongtitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:layout_marginStart="5dp"
+        android:text="Title"
+        android:textColor="@color/black" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnMove"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textSize="8sp"
+            android:text="Move"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textSize="8sp"
+            android:text="Delete"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>
